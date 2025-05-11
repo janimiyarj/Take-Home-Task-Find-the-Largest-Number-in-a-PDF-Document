@@ -1,0 +1,104 @@
+
+! Cadre AI - Take Home Task Brief !
+
+Timeline: 1–2 Days
+
+- Task Overview
+
+Build a simple solution that scans the provided PDF document and identifies the single largest numerical value it contains.
+
+Source Material:
+
+PDF: Cadre AI - AI Engineer TakeHome Task 3: Parse PDF (Source Material).pdf
+
+- Goal
+
+Primary Goal: Locate the largest numeric value in the document, regardless of units (dollars, years, pounds, etc.)
+
+Bonus Challenge: Interpret natural language context such as "values in millions" so that 3.15 becomes 3,150,000
+
+- What You’ll Be Building
+
+Document Parsing Logic:
+
+Parse the PDF
+
+Extract all numeric values
+
+Apply scaling based on keywords like "millions"
+
+Result Extraction:
+
+Compare values and output the single largest one
+
+Implementation:
+
+Language: Python
+
+Libraries: PyMuPDF, OpenAI, dotenv
+
+External API use: OpenAI (minimal tokens)
+
+- What We’re Looking For
+
+Accurate and functional solution
+
+Readable, clean, maintainable code
+
+Bonus handling of linguistic scaling terms (e.g., “billions”)
+
+Reasonable performance (under 1 minute)
+
+Minimal external API calls
+
+- Submission Instructions
+
+- Public GitHub Repo
+
+Host your solution in a public GitHub repository.
+Include:
+
+How to install dependencies
+
+How to run the code
+
+- Loom / Video Walkthrough
+
+Record a 5-minute video explaining:
+
+What the code does
+
+Key design decisions
+
+Live demo
+
+- Notify Cadre AI
+
+Email the GitHub repo link and Loom video to the person who assigned you the task.
+
+Report (Include in README)
+
+- Further Improvements
+
+Add PDF table parser to improve accuracy on financial reports
+
+Use layout-based parsing (e.g., pdfplumber + heuristics)
+
+Convert into a fast API microservice for reuse
+
+- Highlights
+
+Modular architecture, easy to extend
+
+Smart prompt design for scaling awareness
+
+Complexities
+
+Context-based scaling ("3 million")
+
+Avoiding hallucinations in OpenAI responses
+
+- Feedback
+
+Great task for combining NLP + document parsing. A real-world use case that hits practical challenges. Suggest providing PDFs with mixed tables/paragraphs for deeper testing.
+
