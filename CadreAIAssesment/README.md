@@ -1,10 +1,10 @@
-# 📊 PDF Number Extractor
+# PDF Number Extractor
 
 This project intelligently extracts the **largest scaled numeric value** from a PDF using OpenAI's GPT model (e.g., millions, billions).
 
 ---
 
-## 🚀 Features
+## Features
 
 * ✅ Intelligent chunking of PDF text (number-rich content only)
 * ✅ Understands scaling terms like "in millions" or "billion"
@@ -14,7 +14,7 @@ This project intelligently extracts the **largest scaled numeric value** from a 
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 pdf_number_extractor/
@@ -30,7 +30,7 @@ pdf_number_extractor/
 
 ---
 
-## ⚙️ Installation
+##  Installation
 
 ### 1. Clone the repository
 
@@ -55,11 +55,11 @@ Create a `.env` file in the root folder:
 OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-> 🔒 **Important:** Keep your `.env` file private and add it to `.gitignore`.
+>  **Important:** Keep your `.env` file private and add it to `.gitignore`.
 
 ---
 
-## ▶️ Running the Script
+## Running the Script
 
 1. Place your target PDF file in the root folder.
 2. Open `main.py` and make sure the correct filename is provided.
@@ -76,13 +76,13 @@ Example output:
 🔹 Chunk 2: 12,000,000
 🔹 Chunk 3: 3,500,000
 
-✅ Largest Number Detected:
-📊 12,000,000
+Largest Number Detected:
+12,000,000
 ```
 
 ---
 
-## 🔐 .gitignore
+## .gitignore
 
 Create a `.gitignore` file in the root with the following content:
 
@@ -97,7 +97,7 @@ venv/
 
 ---
 
-## 📦 Requirements
+## Requirements
 
 Install all dependencies with:
 
@@ -115,7 +115,7 @@ python-dotenv
 
 ---
 
-## 📄 Source Files Overview
+##  Source Files Overview
 
 ### `main.py`
 
@@ -139,13 +139,9 @@ Loads OpenAI API key securely from the `.env` file using `python-dotenv`.
 
 ---
 
-## 🧠 Credits
+##  Credits
 
 * [OpenAI Python SDK](https://github.com/openai/openai-python)
 * [PyMuPDF (fitz)](https://github.com/pymupdf/PyMuPDF)
 
----
 
-## 🙋‍♂️ Support
-
-Need help customizing or deploying this as an API? Open an issue or reach out directly
