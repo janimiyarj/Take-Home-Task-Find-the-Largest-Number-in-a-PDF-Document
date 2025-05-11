@@ -9,5 +9,5 @@ def get_api_key():
     key = os.getenv("OPENAI_API_KEY")  # Fetch the API key from the environment
     if not key:
         # Raise an error if the key is not found
-        raise ValueError("❌ Please set OPENAI_API_KEY in .env file.")
+        raise ValueError("Please set OPENAI_API_KEY in .env file.")
     return key  # Return the API key for use
