@@ -35,8 +35,8 @@ def find_largest_number(pdf_path):
     max_val = max(max_values)
 
     # Step 7: Output the result in readable format
-    print("\n✅ Largest Number Detected:")
-    print(f"📊 {int(max_val):,}")
+    print("\n Largest Number Detected:")
+    print(f"{int(max_val):,}")
 
 # Entry point of the script
 if __name__ == "__main__":
