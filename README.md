@@ -146,11 +146,10 @@ Loads OpenAI API key securely from the `.env` file using `python-dotenv`.
 
 ---
 
-## Support
-
-Need help customizing or deploying this as an API? Open an issue or reach out directly
+## About Author:
 
 Name of the Author: Jani Miya Shaik
+
 Email: janimiyask72@gmail.com
 
 
