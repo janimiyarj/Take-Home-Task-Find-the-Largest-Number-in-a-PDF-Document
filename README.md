@@ -139,111 +139,30 @@ Loads OpenAI API key securely from the `.env` file using `python-dotenv`.
 
 ---
 
-## Test Cases Handled by the Script
+## Test Cases Handled
 
-1. Skips Irrelevant Pages
+- **Different Numeric Formats Handled**:
+  - `23 million`, `3.5 billion`, `4.25k`, `700 thousand` → Automatically scaled using regex and multiplier logic
+  - `12,000,000`, `2,450,000.50`, `13.5` → Normalized with locale-aware comma/decimal parsing
+  - `€2.5 million`, `USD 3 billion`, `$5.2M` → Extracted and cleaned from currency symbols and suffixes
+  - `increased by 12 million`, `loss of 3 billion`, `projected to be 7.2B` → Extracted from natural language context
+  - Tables with values like `Total Revenue | 2,340,000` or `Net Loss (in millions): 3.1` → Captured with chunking logic and line filtering
 
-Ignores pages with "This page intentionally left blank" or "Table of contents"
-
-2. Ignores Non-Numeric Blocks
-
-Only processes blocks that contain at least one digit
-
-3. Handles Natural Language Context
-
-Recognizes and scales terms like "in millions", "billions", "thousands", etc.
-
-4. Chunk-Wise Context Management
-
-Extracts 5 lines before and after the first numeric line for better understanding
-
-5. Rejects Hallucinations
-
-Validates and filters out responses like "12 trillion billion"
-
-Ignores unexpected symbols or units returned by the model
-
-6. Parallel Execution
-
-Speeds up execution using ThreadPoolExecutor to call OpenAI in parallel
-
-7. Returns Only Digits
-
-Final output is purely numerical—no commas, units, or labels
-
-8. Handles Edge Cases Gracefully
-
-Returns 0 if no number is detected in a chunk
-
-Returns the maximum among all scaled valid values
-
-9. Tolerates Number Format Variations
-
-Accepts numbers with commas (e.g., 1,000,000) and decimals (e.g., 3.2 million)
-
-10. Maintains Deduplicated Context
-
-Tracks seen lines across blocks to avoid duplicate content in overlapping chunks
-
-11. Ignores Tables of Content and Headers
-
-Filters out sections that don’t contribute numeric data, including cover blurbs
-
-12. Scales Small Decimals Intelligently
-
-Converts "2.45 million" to 2,450,000 using regex and postprocessing
-
-13. Handles Mixed Content Blocks
-
-If a block contains both narrative text and financial tables, it extracts only the informative parts
-
-14. Avoids Over-Chunking
-
-Respects a 250-word limit per chunk to optimize context window usage for OpenAI
-
-15. Ignores Line Noise
-
-Skips blocks made up of only symbols or repeated characters with no value
-
-16. Avoids Duplicate Chunk Processing
-
-Prevents lines from being reprocessed multiple times across blocks
-
-17. Resilient to OCR Glitches
-
-Ignores broken or malformed lines that are common in OCR-scanned PDFs
-
-18. Handles Minimal-Text Pages
-
-Skips pages that contain fewer than a threshold number of words
-
-19. Validates Value Range
-
-Rejects numbers that exceed realistic financial/scientific boundaries (>10^13)
-
-20. Normalizes Decimal Separators
-
-Accepts both commas and periods as decimal/group separators based on locale
-
-21. Case-Insensitive Keyword Filtering
-
-Recognizes headers like "MILLION" or "Billion" in any casing
-
-22. Sanitizes Prompt Inputs
-
-Removes extra whitespace or control characters from chunks before sending to OpenAI
-
-23. Fail-Safe API Handling
-
-Returns 0 for chunks if the OpenAI API times out or returns an error
-
-24. Skips Redundant Descriptions
-
-Avoids company descriptions or boilerplate text sections not containing numeric value
-
-25. Prepares OpenAI-Friendly Prompts
-
-Optimized prompt design ensures correct response from GPT with clear formatting instructions
+- Skips irrelevant pages (blank or TOC)  
+- Extracts only numeric-rich content  
+- Scales terms like "million", "billion", "k", "thousand"  
+- 5-line context window around numeric entries  
+- Rejects invalid/hallucinated responses like "12 trillion billion"  
+- Threaded OpenAI API calls for speed  
+- Standardizes output as plain digits (no labels or symbols)  
+- Handles OCR errors and malformed content  
+- Rejects extreme/unrealistic values (>10^13)  
+- Deduplicated lines across overlapping chunks  
+- Skips narrative-only or boilerplate sections  
+- Normalizes comma/decimal use per locale (e.g., 1.000,5 or 1,000.5)  
+- Prepares OpenAI-friendly prompts to prevent hallucination  
+- Fallbacks to 0 if no number is detected or API fails  
+- Filters symbols/line noise and removes redundant corporate blurbs
 
 ---
 
