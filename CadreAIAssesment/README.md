@@ -139,6 +139,52 @@ Loads OpenAI API key securely from the `.env` file using `python-dotenv`.
 
 ---
 
+---
+
+## 📊 Results
+
+Here’s an example result after running the script on the provided PDF:
+
+### 📄 Input PDF:
+
+**Cadre AI - AI Engineer TakeHome Task 3: Parse PDF (Source Material).pdf**
+
+### 🖥️ Actual Run Output (on macOS Terminal):
+
+```
+janimiyashaik@Janis-MacBook-Pro CadreAIAssessment % /Users/janimiyashaik/.pyenv/versions/3.11.8/bin/python /Users/janimiyashaik/Desktop/CadreAIAssessment/main.py
+
+✅ Largest Number Detected:
+📊 30,704,100,000
+```
+
+This was the correct, final scaled number found across all document chunks.
+
+---
+
+### 🏆 Final Result:
+
+```
+Largest Number Detected:
+📊 30,704,100,000
+```
+
+This value was accurately extracted and scaled based on context like “in millions” or table headers.
+
+---
+
+### 🧪 Interpretation:
+
+The model successfully:
+
+* Skipped irrelevant or narrative-only text.
+* Recognized and scaled numeric values by interpreting context like "in millions".
+* Ignored hallucinated or invalid numbers.
+* Returned only digits as instructed.
+
+---
+
+
 ##  Credits
 
 * [OpenAI Python SDK](https://github.com/openai/openai-python)
