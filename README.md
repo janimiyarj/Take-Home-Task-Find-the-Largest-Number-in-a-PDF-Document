@@ -1,7 +1,5 @@
 # Take-Home-Task-Find-the-Largest-Number-in-a-PDF-Document
 
-# Largest PDF Number Extractor
-
 This project intelligently extracts the **largest scaled numeric value** from a PDF using OpenAI's GPT model (e.g., millions, billions).
 
 ---
@@ -151,6 +149,10 @@ Loads OpenAI API key securely from the `.env` file using `python-dotenv`.
 ## Support
 
 Need help customizing or deploying this as an API? Open an issue or reach out directly
+
+Name of the Author: Jani Miya Shaik
+Email: janimiyask72@gmail.com
+
 
 
 
