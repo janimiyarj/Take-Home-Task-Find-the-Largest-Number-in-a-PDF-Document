@@ -139,113 +139,122 @@ Loads OpenAI API key securely from the `.env` file using `python-dotenv`.
 
 ---
 
-## ✅ Test Cases Handled by the Script
+## Test Cases Handled by the Script
 
-✔️ 1. Skips Irrelevant Pages
+1. Skips Irrelevant Pages
 
 Ignores pages with "This page intentionally left blank" or "Table of contents"
 
-✔️ 2. Ignores Non-Numeric Blocks
+2. Ignores Non-Numeric Blocks
 
 Only processes blocks that contain at least one digit
 
-✔️ 3. Handles Natural Language Context
+3. Handles Natural Language Context
 
 Recognizes and scales terms like "in millions", "billions", "thousands", etc.
 
-✔️ 4. Chunk-Wise Context Management
+4. Chunk-Wise Context Management
 
 Extracts 5 lines before and after the first numeric line for better understanding
 
-✔️ 5. Rejects Hallucinations
+5. Rejects Hallucinations
 
 Validates and filters out responses like "12 trillion billion"
 
 Ignores unexpected symbols or units returned by the model
 
-✔️ 6. Parallel Execution
+6. Parallel Execution
 
 Speeds up execution using ThreadPoolExecutor to call OpenAI in parallel
 
-✔️ 7. Returns Only Digits
+7. Returns Only Digits
 
 Final output is purely numerical—no commas, units, or labels
 
-✔️ 8. Handles Edge Cases Gracefully
+8. Handles Edge Cases Gracefully
 
 Returns 0 if no number is detected in a chunk
 
 Returns the maximum among all scaled valid values
 
-✔️ 9. Tolerates Number Format Variations
+9. Tolerates Number Format Variations
 
 Accepts numbers with commas (e.g., 1,000,000) and decimals (e.g., 3.2 million)
 
-✔️ 10. Maintains Deduplicated Context
+10. Maintains Deduplicated Context
 
 Tracks seen lines across blocks to avoid duplicate content in overlapping chunks
 
-✔️ 11. Ignores Tables of Content and Headers
+11. Ignores Tables of Content and Headers
 
 Filters out sections that don’t contribute numeric data, including cover blurbs
 
-✔️ 12. Scales Small Decimals Intelligently
+12. Scales Small Decimals Intelligently
 
 Converts "2.45 million" to 2,450,000 using regex and postprocessing
 
-✔️ 13. Handles Mixed Content Blocks
+13. Handles Mixed Content Blocks
 
 If a block contains both narrative text and financial tables, it extracts only the informative parts
 
-✔️ 14. Avoids Over-Chunking
+14. Avoids Over-Chunking
 
 Respects a 250-word limit per chunk to optimize context window usage for OpenAI
 
-✔️ 15. Ignores Line Noise
+15. Ignores Line Noise
 
 Skips blocks made up of only symbols or repeated characters with no value
 
-✔️ 16. Avoids Duplicate Chunk Processing
+16. Avoids Duplicate Chunk Processing
 
 Prevents lines from being reprocessed multiple times across blocks
 
-✔️ 17. Resilient to OCR Glitches
+17. Resilient to OCR Glitches
 
 Ignores broken or malformed lines that are common in OCR-scanned PDFs
 
-✔️ 18. Handles Minimal-Text Pages
+18. Handles Minimal-Text Pages
 
 Skips pages that contain fewer than a threshold number of words
 
-✔️ 19. Validates Value Range
+19. Validates Value Range
 
 Rejects numbers that exceed realistic financial/scientific boundaries (>10^13)
 
-✔️ 20. Normalizes Decimal Separators
+20. Normalizes Decimal Separators
 
 Accepts both commas and periods as decimal/group separators based on locale
 
-✔️ 21. Case-Insensitive Keyword Filtering
+21. Case-Insensitive Keyword Filtering
 
 Recognizes headers like "MILLION" or "Billion" in any casing
 
-✔️ 22. Sanitizes Prompt Inputs
+22. Sanitizes Prompt Inputs
 
 Removes extra whitespace or control characters from chunks before sending to OpenAI
 
-✔️ 23. Fail-Safe API Handling
+23. Fail-Safe API Handling
 
 Returns 0 for chunks if the OpenAI API times out or returns an error
 
-✔️ 24. Skips Redundant Descriptions
+24. Skips Redundant Descriptions
 
 Avoids company descriptions or boilerplate text sections not containing numeric value
 
-✔️ 25. Prepares OpenAI-Friendly Prompts
+25. Prepares OpenAI-Friendly Prompts
 
 Optimized prompt design ensures correct response from GPT with clear formatting instructions
 
 ---
+
+## Model Comparison
+
+| Model      | Speed       | Accuracy         | Notes                                   |
+|------------|-------------|------------------|-----------------------------------------|
+| **GPT (OpenAI)** | Moderate | High            | Most accurate for numeric parsing       |
+| **Claude**       | Super fast | Hallucinates     | Fast but often generates wrong values   |
+| **Gemini**       | Inconsistent | Low             | Often fails to identify relevant values |
+
 
 ## Credits
 
