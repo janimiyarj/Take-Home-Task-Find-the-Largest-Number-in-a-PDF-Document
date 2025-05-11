@@ -52,5 +52,5 @@ Answer:
 
     except Exception as e:
         # Handle any exceptions from OpenAI API call
-        print(f"❌ OpenAI Error: {e}")
+        print(f"OpenAI Error: {e}")
         return 0
