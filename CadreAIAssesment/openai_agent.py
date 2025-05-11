@@ -47,9 +47,7 @@ Answer:
         # Only return values that are realistic and within upper bounds
         if val > 0 and val <= 10**13:
             return val
-
-        # Print a warning if the value is invalid or hallucinated
-        print(f"⚠️ Rejected hallucinated/invalid value: {result}")
+            
         return 0
 
     except Exception as e:
