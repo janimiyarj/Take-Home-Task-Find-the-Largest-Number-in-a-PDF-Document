@@ -1,90 +1,156 @@
 # Take-Home-Task-Find-the-Largest-Number-in-a-PDF-Document
-Timeline: 1-2 Days
 
-Task Overview:
-Build a simple solution that scans the provided PDF document and identifies the single largest numerical value it contains. This mimics a real-world scenario of parsing unstructured or semi-structured documents to extract meaningful data.
-Source Material:
-PDF: Cadre AI - AI Engineer TakeHome Task 3: Parse PDF (Source Material).pdf
+# Largest PDF Number Extractor
+
+This project intelligently extracts the **largest scaled numeric value** from a PDF using OpenAI's GPT model (e.g., millions, billions).
+
+---
+
+## Features
+
+* Intelligent chunking of PDF text (number-rich content only)
+* Understands scaling terms like "in millions" or "billion"
+* Uses OpenAI to extract the largest numeric value per chunk
+* Cleans hallucinated or invalid outputs
+* Clean, production-friendly project structure with `.env` support
+
+---
+
+## Project Structure
+
+```
+pdf_number_extractor/
+├── main.py               # Main entry point
+├── extractor.py          # PDF chunking logic using PyMuPDF
+├── openai_agent.py       # Prompt OpenAI and validate response
+├── utils.py              # Numeric value extractor & scaler
+├── config.py             # Loads OpenAI API key from .env
+├── requirements.txt      # Python dependencies
+├── .env                  # API key (excluded from version control)
+└── README.md             # This file
+```
+
+---
+
+## Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/pdf_number_extractor.git
+cd pdf_number_extractor
+```
+
+### 2. Create a virtual environment and install dependencies
+
+```bash
+python -m venv venv
+source venv/bin/activate         # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+### 3. Add your OpenAI API key
+
+Create a `.env` file in the root folder:
+
+```env
+OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+>  **Important:** Keep your `.env` file private and add it to `.gitignore`.
+
+---
+
+## Running the Script
+
+1. Place your target PDF file in the root folder.
+2. Open `main.py` and make sure the correct filename is provided.
+3. Run the script:
+
+```bash
+python main.py
+```
+
+Example output:
+
+```
+Chunk 1: 7,200,000
+Chunk 2: 12,000,000
+Chunk 3: 3,500,000
+
+Largest Number Detected:
+12,000,000
+```
+
+---
+
+## .gitignore
+
+Create a `.gitignore` file in the root with the following content:
+
+```
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.DS_Store
+venv/
+```
+
+---
+
+## Requirements
+
+Install all dependencies with:
+
+```bash
+pip install -r requirements.txt
+```
+
+### Dependencies:
+
+```
+openai>=1.0.0
+PyMuPDF>=1.23.7
+python-dotenv
+```
+
+---
+
+## Source Files Overview
+
+### `main.py`
+
+Runs the end-to-end pipeline: extracts chunks, sends them to OpenAI, and prints the largest number.
+
+### `extractor.py`
+
+Extracts context-rich chunks from PDF using PyMuPDF. Skips irrelevant text and captures digit-heavy content.
+
+### `openai_agent.py`
+
+Contains the prompt template and logic to send each chunk to OpenAI and validate the numeric response.
+
+### `utils.py`
+
+Parses and scales numbers like "23 million" into `23000000`. Supports thousands, millions, billions, trillions.
+
+### `config.py`
+
+Loads OpenAI API key securely from the `.env` file using `python-dotenv`.
+
+---
+
+## Credits
+
+* [OpenAI Python SDK](https://github.com/openai/openai-python)
+* [PyMuPDF (fitz)](https://github.com/pymupdf/PyMuPDF)
+
+---
+
+## Support
+
+Need help customizing or deploying this as an API? Open an issue or reach out directly
 
 
-Goal:
-Primary Goal: Locate the greatest numeric value in the document. The specific unit (dollars, years, pounds, etc.) is irrelevant - just find the largest number.
 
-
-Bonus Challenge: Account for natural language context. For example, if the document mentions that values are listed in millions, then 3.15 should be interpreted as 3,150,000 instead of 3.15.
-
-(continued on next page)
-What You’ll Be Building:
-Document Parsing Logic:
-
-
-Parse the PDF (or a local copy of the PDF) and read its contents.
-Identify all numerical values present in the text.
-If applicable, adjust values based on textual indicators (e.g., “millions,” etc.).
-
-
-Result Extraction:
-
-
-Compare all discovered numeric values.
-Determine which one is the largest overall.
-Output that value in a clear, readable format.
-
-
-Implementation:
-
-
-You are free to use any programming language or open-source libraries.
-Your solution can call any external APIs, but do so at a minimal/negligible cost.
-
-
-
-What We’re Looking For:
-Correctness & Functionality: The solution should accurately parse the PDF and find the largest value.
-
-
-Clean, Maintainable Code: Show clear organization, sensible abstractions, and readability.
-
-
-Handling of Natural Language Context (Bonus): Where the document references values in millions (or similar qualifiers), handle those cases correctly.
-
-
-Reasonable Performance: Should complete in well under a minute for a typical PDF such as the one provided.
-
-
-No External Service Calls: The solution must be self-contained, referencing local files or libraries only.
-
-
-
-
-What You Can Use:
-Languages & Frameworks: Any language is acceptable. Python is suggested if you don’t have a preference.
-
-
-Libraries: Open-source packages (e.g., PDF parsing libraries in Python).
-
-
-Resources: ChatGPT, Gemini, Claude, etc. are allowed during development.
-
-
-
-Submission:
-Public Repo (Preferred): Host your solution in a public GitHub repository (or similar). Provide a short README that describes:
-How to install dependencies
-How to run the code
-Notify Cadre AI: Email the link to the person who provided you with this task.
-A 5-minute Loom or video walk-through is required.
-
-
-
-Report:
-In your README or accompanying documentation, please include:
-Further Improvements: If you had more time, what would you add or optimize?
-Highlights: Which parts of your solution are you most proud of?
-Complexities: Which parts were the most challenging or time-consuming?
-Feedback: How was the experience? Do you have any suggestions for improving this task?
-
-
-
-Have fun and best of luck!
-You may be asked to walk through your code in a subsequent interview, and you should be prepared to explain your approach and design decisions.
